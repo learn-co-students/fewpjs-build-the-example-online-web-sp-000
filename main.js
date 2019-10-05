@@ -4,6 +4,26 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.addEventListener('DOMContentLoaded', function() {
+  let likeButtons = document.querySelectorAll('.like');
+  likeButtons.forEach(likeButton => {
+    likeButton.addEventListener('click', toggleLike);
+  });
+});
+
+function toggleLike(e) {
+  let heart = this.firstElementChild.innerHTML
+  if (heart === EMPTY_HEART) {
+    this.firstElementChild.innerHTML = FULL_HEART;
+    this.firstElementChild.classList.add('activated-heart');
+
+  } else {
+    this.firstElementChild.innerHTML = EMPTY_HEART;
+    this.firstElementChild.classList.remove('activated-heart');
+  }
+  //fetch(mimicServerCall).then(resp => resp.json()).then(json => console.log(json));
+}
+
 
 
 
