@@ -3,6 +3,19 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+document.querySelector(".like-glyph").onclick = function(event) {
+  function likeCallback(e) {
+    let heart = e.target;
+    mimicServerCall()
+       .then(function(serverMessage){
+         alert("You notified the server!");
+       })
+       .catch(function(error) {
+         alert("Something went wrong!"); 
+       })
+  }
+}
+
 
 
 
