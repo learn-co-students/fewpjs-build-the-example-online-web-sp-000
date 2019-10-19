@@ -1,9 +1,33 @@
 // Defining text characters for the empty and full hearts for you to use later.
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
+const div = document.querySelector('#modal');
+const p = document.querySelector('#modal-message');
 
 // Your JavaScript code goes here!
 
+const likeButtons = document.querySelectorAll('.like');
+for (const button of likeButtons){    
+  button.addEventListener('click', function(){
+    mimicServerCall()
+      .then((resp) => {
+        // if (resp == "Pretend remote server notified of action!"){
+          const span = button.querySelector('.like-glyph');
+          const array = Array.from(span.classList);
+          if (array.includes('activated-heart')){
+            span.classList.remove('activated-heart');
+          } else {
+          span.classList.add('activated-heart');
+          }
+        // }
+      })
+      .catch((error) => {
+          div.classList.remove('hidden');
+          p.innerHTML = error;
+          setTimeout(() => div.classList.add('hidden'), 5000);
+      })
+  })
+}
 
 
 
