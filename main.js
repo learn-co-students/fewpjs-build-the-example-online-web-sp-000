@@ -2,10 +2,41 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+document.querySelector('div#modal').setAttribute('class', "hidden");
 
+function toggleHeart(heart) {
+  if (heart.querySelector('.like-glyph')) { heart = heart.querySelector('.like-glyph') }
+  const reverseFill = {
+    '♥': '♡',
+    '♡': '♥'
+  };
+  const reverseColor = {
+    'rgb(255, 0, 139)': '',
+    '': 'rgb(255, 0, 139)'
+  }
 
+  heart.innerText = reverseFill[heart.innerText];
+  heart.parentElement.style.color = reverseColor[heart.parentElement.style.color];
+}
 
+function likeClick(event) {
+  mimicServerCall()
+    .then((response) => {
+      toggleHeart(event.target)
+    })
+    .catch((error) => {
+      modal.removeAttribute('class');
+      setTimeout( () => {
+        modal.setAttribute('class', "hidden");
+      }, 5000);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  for (likeBtn of document.querySelectorAll('.like')) {
+    likeBtn.addEventListener("click", likeClick);
+  }
+});
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
