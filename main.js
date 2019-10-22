@@ -2,8 +2,43 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+const resolvedLike = result => {
+  console.log( result )
+  let target = config.target
 
+  if ( target.textContent == EMPTY_HEART ) {
+    target.textContent = FULL_HEART
+    target.className = 'activated-heart'
+  } else {
+    target.textContent = EMPTY_HEART
+    target.className = ''
+  }
+}
+
+const errorLike = error => {
+  console.log( error )
+  let modal = document.getElementById( 'modal' )
+  modal.className = ''
+  modal.textContent = error
+  setTimeout(() => { modal.className = 'hidden' }, 5000);
+}
+
+const activateHeart = event => {
+  mimicServerCall( config = { target: event.target })
+      .then(
+        resolvedLike,
+        errorLike
+      )
+}
+
+document.addEventListener( 'DOMContentLoaded', event => {
+  let posts = document.getElementsByClassName( 'media-post' )
+  for ( let post of posts ) {
+    post.querySelector ( '.like-glyph' )
+      .addEventListener( 'click', activateHeart)
+  }
+
+})
 
 
 
