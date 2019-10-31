@@ -3,9 +3,41 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+let modal = document.querySelector('.hidden');
+let articles = document.querySelectorAll('.article');
+let likes = document.querySelectorAll('.like-glyph');
+likes.forEach(function(like, index){
+  
+  like.addEventListener('click', function(){
+    mimicServerCall()
+    .then(function(data){
+      if(like.classList.contains("activated-heart")){
+        like.classList.remove("activated-heart");
+      }else{
+      like.innerHTML = FULL_HEART;
+      like.classList.add("activated-heart");
+      };
+    })
+    .catch(function(error){
+      modal.classList.remove("hidden");
+      setTimeout(function() {
+        modal.classList.add("hidden")
+      }, 5000);
+    });
+    //if(EMPTY_HEART.style.display == 'block'){
+      //EMPTY_HEART.style.display = 'hidden';
+      //FULL_HEART.style.display = 'block';
+    //}else if(art === FULL_HEART){
+      //art = EMPTY_HEART
+    //}
+  })
 
-
-
+})
+//EMPTY_HEART.addEventListener('click', function(){
+//FULL_HEART.style.display = 'block';
+//}
+//)
+//.like
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
