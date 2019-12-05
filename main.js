@@ -8,11 +8,14 @@ let likes;
 const errModal = document.getElementById("modal");
 
 document.addEventListener("DOMContentLoaded", () =>{
-  likes = document.getElementsByClassName("like")
 
+  likes = document.getElementsByClassName("like")
+  // adds Event Listener to each like <li>
   for (let i=0; i<likes.length; i++) {
     likes[i].addEventListener("click", () =>{
       let heart = likes[i].querySelector("span");
+      //event listener does the following conditions below
+
       if (heart.innerHTML === EMPTY_HEART) {
         mimicServerCall()
           .then(response => {
@@ -33,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () =>{
       }
     })
   };
-})
+});
 
 
 
