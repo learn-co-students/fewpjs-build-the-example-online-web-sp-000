@@ -4,8 +4,31 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let likeStatus = {
+  '♡':'♥',
+  '♥':'♡'
+}
 
+let color = {
+  'red':'',
+  '':'red'
+}
 
+let likes = document.querySelectorAll('.like')
+
+function cb(event){
+  let like = event.target
+  mimicServerCall('blahdotcom')
+    .then( function(serverMessage){
+      like.innerText = likeStatus[like.innerText]
+      like.style.color = color[like.style.color]
+    })
+    .catch(error => document.getElementById('modal').className = '')
+}
+
+for (let glyph of likes){
+  glyph.addEventListener('click', cb)
+}
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
