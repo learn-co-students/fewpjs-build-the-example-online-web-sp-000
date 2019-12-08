@@ -2,7 +2,12 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+const input = document.getElementsByClassName("like");
+input.addEventListener('click', function(e) {
+  if (e == EMPTY_HEART) {
+    mimicServerCall()
+  }
+})
 
 
 
