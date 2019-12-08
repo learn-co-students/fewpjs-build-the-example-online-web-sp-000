@@ -2,14 +2,22 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-const input = document.getElementsByClassName("like");
-input.addEventListener('click', function(e) {
-  if (e == EMPTY_HEART) {
-    mimicServerCall()
-  }
-})
+let hearts = document.getElementsByClassName("like");
 
+function likeCallback(e) {
+  let heart = e.target;
+  mimicServerCall("url")
+  .then(function(serverMessage) {
+    heart.innerText = FULL_HEART;
+  })
+  .catch(function(error) {
+    document.getElementById("modal").className = "";
+  });
+}
 
+for (let glyph of hearts) {
+  glyph.addEventListener("click", likeCallback);
+}
 
 
 //------------------------------------------------------------------------------
