@@ -74,7 +74,7 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
 // let articleHearts = document.querySelectorAll(".like");
 
 // function likeCallback(e) {
-//   let heart = e.target;
+//   let heart = e.target; //target is a reference to the object that dispatched the event.
 //   mimicServerCall("bogusUrl")
 //    //OR: mimicServerCall("bogusUrl", {forceFailure: true})
 //     .then(function(serverMessage){
