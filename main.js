@@ -6,7 +6,7 @@ const FULL_HEART = '♥'
 
 //Add the .hidden class to the error modal in the HTML so it does not appear when the page first loads
 let modal = document.querySelector('#modal')
-module.setAttribute('class', 'hidden')
+modal.setAttribute('class', 'hidden')
 
 document.addEventListener('DOMContentLoaded', function() {
   const hearts = document.querySelectorAll('.like-glyph') //assign "hearts" to each ".like-glyph" class
