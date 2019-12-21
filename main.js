@@ -57,3 +57,38 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     }, 300);
   });
 }
+
+
+// CHALLENGE SOLUTION - doesn't seem complete. missing setTimeout, etc.
+
+// let glyphStates = {
+//   "♡": "♥",
+//   "♥": "♡"
+// };
+
+// let colorStates = {
+//   "red" : "",
+//   "": "red"
+// };
+
+// let articleHearts = document.querySelectorAll(".like");
+
+// function likeCallback(e) {
+//   let heart = e.target;
+//   mimicServerCall("bogusUrl")
+//    //OR: mimicServerCall("bogusUrl", {forceFailure: true})
+//     .then(function(serverMessage){
+//        heart.innerText = glyphStates[heart.innerText];
+//        heart.style.color = colorStates[heart.style.color];
+//     })
+//     .catch(function(error) {
+//       // Basic
+//       // alert("Something went wrong!");
+//       // or....
+//       document.getElementById("modal").className = "";
+//     });
+// }
+
+// for (let glyph of articleHearts) {
+//   glyph.addEventListener("click", likeCallback);
+// }
