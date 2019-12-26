@@ -5,19 +5,33 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 let liList = document.querySelectorAll('article ul li')
 for (const li of liList){
-   li.setAttribute("onclick", "changeHeart(this)")
+   li.setAttribute("onclick", "fetchFromServer(this)")
 }
+
+
+function fetchFromServer(li){
+mimicServerCall('http://mimicServer.example.com')
+.then(resp=>changeHeart(li))
+.catch(error=>Displayerror(error,li))
+}
+
 function changeHeart(li){
   let span = li.childNodes[1]
   if (span.className=="activated-heart"){
     span.innerText = EMPTY_HEART
     span.setAttribute("class", "like-glyph")
-    mimicServerCall()
-    debugger
   }else{
     span.innerText = FULL_HEART
     span.setAttribute("class", "activated-heart")
   }
+}
+
+function Displayerror(error,li){
+  let modal = document.getElementById("modal")
+  modal.removeAttribute("class","hidden")
+  let message = document.getElementById("modal-message")
+  message.innerText = error
+  setTimeout(()=>{modal.setAttribute("class","hidden")},5000)
 }
 
 
