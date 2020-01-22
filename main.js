@@ -4,8 +4,8 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-
-
+let element = document.getElementById("modal");
+element.hidden;
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
