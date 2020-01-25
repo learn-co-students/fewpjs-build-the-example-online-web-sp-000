@@ -17,6 +17,7 @@ mimicServerCall('http://mimicServer.example.com')
 
 function changeHeart(li){
   let span = li.childNodes[1]
+  mimicServerCall()//how to handle mimicservercall???
   if (span.className=="activated-heart"){
     span.innerText = EMPTY_HEART
     span.setAttribute("class", "like-glyph")
