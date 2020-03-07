@@ -2,9 +2,28 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+let hearts = document.querySelectorAll('.like');
 
+function likeComment(e) {
+  let heart = e.target;
+  heartStatus = heart.innerText
 
+  mimicServerCall()
+  .then(function(response) {
+    if (heartStatus == EMPTY_HEART) {
+      heart.innerText = FULL_HEART
+      heart.classList.add('activated-heart');
+    } else {
+      heart.innerText = EMPTY_HEART
+      heart.classList.remove('activated-heart');
+    }
+  })
+  .catch(function(error){
+    alert("Problem with request!");
+  })
+}
+
+hearts.forEach(heart => heart.addEventListener("click", likeComment))
 
 
 //------------------------------------------------------------------------------
