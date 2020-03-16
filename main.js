@@ -3,7 +3,31 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+function makeErrorInvisible() {
+  document.querySelector("#modal").className = "hidden"
+}
 
+function makeErrorVisible() {
+  document.querySelector("#modal").className = "visible"
+}
+
+document.addEventListener("DOMContentLoaded", 
+  makeErrorInvisible()
+);
+
+function changeHeartActivation(heart) {
+  if(heart.className != "activated-heart"){
+    heart.className = "activated-heart";
+  }
+  else {
+    heart.className = "deactivated-heart";
+  }
+}
+document.querySelectorAll(".like-glyph").forEach(heart =>{
+  heart.addEventListener("click", event => {
+    changeHeartActivation(heart);
+  })
+})
 
 
 
