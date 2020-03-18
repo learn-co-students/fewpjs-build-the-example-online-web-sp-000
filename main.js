@@ -2,7 +2,18 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+document.addEventListener("DOMContentLoaded", () => {
+  errorDiv = document.getElementById('modal')
+  errorDiv.firstElementChild.classList.add("hidden")
+})
+// Hide error popup using .hidden
+// funcion mimicServerCall mimics making a server request
+  //if mimicServerCall fails, use catch to respond, display error in .hidden, error message, and setTimeout to hide again
+  //if successful, change heart to full_heart, add .activated-heart class to make heart red
+
+// when user clicks full heart, change heart back to empty_heart, remove .activated_heart class
+
+// do not make full_heart changes until in a successful .then block (until server requests respond!)
 
 
 
