@@ -3,6 +3,17 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+mimicServerCall()
+    .then(function(response) {})
+    .catch(function(response) {
+        m = document.querySelector("#modal")
+        m.removeAttribute("class")
+
+        message = document.querySelector("#modal-message")
+        message.innerText = response
+    })
+
+
 
 
 
@@ -11,15 +22,15 @@ const FULL_HEART = '♥'
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
 
-function mimicServerCall(url="http://mimicServer.example.com", config={}) {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
-      let isRandomFailure = Math.random() < .2
-      if (isRandomFailure) {
-        reject("Random server error. Try again.");
-      } else {
-        resolve("Pretend remote server notified of action!");
-      }
-    }, 300);
-  });
+function mimicServerCall(url = "http://mimicServer.example.com", config = {}) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            let isRandomFailure = Math.random() < .2
+            if (isRandomFailure) {
+                reject("Random server error. Try again.");
+            } else {
+                resolve("Pretend remote server notified of action!");
+            }
+        }, 300);
+    });
 }
