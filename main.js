@@ -4,8 +4,25 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+// hide error modal on page load
+function addHidden() {
+  let element = document.getElementById('modal');
+  element.classList.add('hidden');
+}
 
+addHidden();
 
+// like heart
+
+function like() {
+  console.log('heart clicked');
+}
+
+document.querySelectorAll('.like-glyph').forEach(item => {
+  item.addEventListener('click', event => {
+    like()
+  })
+})
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
