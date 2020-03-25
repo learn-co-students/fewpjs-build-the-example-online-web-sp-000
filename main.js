@@ -3,15 +3,41 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
-mimicServerCall()
-    .then(function(response) {})
-    .catch(function(response) {
-        m = document.querySelector("#modal")
-        m.removeAttribute("class")
 
-        message = document.querySelector("#modal-message")
-        message.innerText = response
+
+//attach listen event to like
+let likes = document.querySelectorAll(".like-glyph")
+for (const like of likes) {
+    like.addEventListener("click", (event) => {
+        mimicServerCall()
+            .then(function(response) {
+                likeUnlike(like)
+            })
+            .catch(function(response) {
+                m = document.querySelector("#modal")
+                setTimeout(function() { m.classList.add("hidden") }, 5000);
+                m.classList.remove("hidden")
+                message = document.querySelector("#modal-message")
+                message.innerText = response;
+
+            })
+
     })
+
+}
+
+function likeUnlike(like) {
+    if (like.innerText == EMPTY_HEART) {
+        like.innerText = FULL_HEART
+        like.classList.add("activated-heart")
+    } else if (like.innerText == FULL_HEART) {
+        like.innerText = EMPTY_HEART
+        like.classList.remove("activated-heart")
+    }
+}
+
+
+
 
 
 
