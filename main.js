@@ -2,21 +2,22 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
+const modal = document.querySelector('#modal')
+
+// Keep all your styling rules entirely in style.css. Do not manipulate any .style properties.
+function hideError() {
+  modal.classList.add("hidden")
+};
+
+function showError() {
+  modal.classList.remove("hidden")
+}
+
+// Add the .hidden class to the error modal in the HTML so it does not appear when the page first loads
+hideError();
+
 // Your JavaScript code goes here!
 document.addEventListener('DOMContentLoaded', (event) => {
-  const modal = document.querySelector('#modal')
-
-  // Keep all your styling rules entirely in style.css. Do not manipulate any .style properties.
-  function hideError() {
-    modal.classList.add("hidden")
-  };
-
-  function showError() {
-    modal.classList.remove("hidden")
-  }
-
-  // Add the .hidden class to the error modal in the HTML so it does not appear when the page first loads
-  hideError();
 
   document.addEventListener("click", function (event) {
     const likeStatus = event.srcElement.innerText
