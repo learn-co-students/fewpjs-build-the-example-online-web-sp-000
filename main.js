@@ -4,7 +4,29 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let hearts = document.querySelectorAll(".like")
 
+for (let i = 0; i < hearts.length; i++) {
+  hearts[i].addEventListener("click", like)
+}
+
+function like(event) {
+  heart = event.target
+  mimicServerCall("fakeURL")
+  .then(resp => {
+    if (heart.innerHTML === EMPTY_HEART) {
+      heart.innerHTML = FULL_HEART
+      heart.className = "activated-heart"
+    } else if (heart.innerHTML === FULL_HEART) {
+      heart.innerHTML = EMPTY_HEART
+      heart.classList.remove("activated-heart")
+    }
+  })
+  .catch((error) => {
+    console.error('Error:', error)
+    document.getElementById("modal").className = ""
+  })
+}
 
 
 //------------------------------------------------------------------------------
