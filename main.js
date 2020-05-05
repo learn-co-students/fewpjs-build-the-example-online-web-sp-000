@@ -4,7 +4,6 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 hideErrorModal();
-const colorState = {"red":"","":"red"}
 
 document.addEventListener("DOMContentLoaded", () => {
   addEventListenersToHearts();
@@ -20,20 +19,24 @@ function addEventListenersToHearts() {
 
 function handleLikeEvent(event) {
   console.log('hi');
-  let likeButtons = document.querySelectorAll(".like");
-  
+
   mimicServerCall()
+  
     .then(resp => {
-      event.target.innerText = FULL_HEART
-      event.target.style.color = colorState[event.target.style.color]
+      if (event.target.innerText == '♡') {
+        event.target.innerText = FULL_HEART;
+        event.target.classList.add('activated-heart');
+      } else
+        event.target.innerText = EMPTY_HEART;
+        event.target.className = '';
+      
     })
     .catch(error => {
       document.getElementById('modal').className = ""
       setTimeout(function() {
         document.getElementById('modal').className = 'hidden'
       }, 5000);
-    })
-
+    }) 
 };
 
 function hideErrorModal() {
