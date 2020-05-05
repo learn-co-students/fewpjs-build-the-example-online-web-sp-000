@@ -3,9 +3,43 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+hideErrorModal();
+const colorState = {"red":"","":"red"}
 
+document.addEventListener("DOMContentLoaded", () => {
+  addEventListenersToHearts();
+});
 
+function addEventListenersToHearts() {
+  // add event listener to elements with 'like' class
+  let likeElementsArray = document.getElementsByClassName("like");
+  for (likeEl of likeElementsArray) {
+    likeEl.addEventListener('click', handleLikeEvent);
+  }
+};
 
+function handleLikeEvent(event) {
+  console.log('hi');
+  let likeButtons = document.querySelectorAll(".like");
+  
+  mimicServerCall()
+    .then(resp => {
+      event.target.innerText = FULL_HEART
+      event.target.style.color = colorState[event.target.style.color]
+    })
+    .catch(error => {
+      document.getElementById('modal').className = ""
+      setTimeout(function() {
+        document.getElementById('modal').className = 'hidden'
+      }, 5000);
+    })
+
+};
+
+function hideErrorModal() {
+  let modalDiv = document.getElementById("modal");
+  modalDiv.setAttribute('class', 'hidden');
+};
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
