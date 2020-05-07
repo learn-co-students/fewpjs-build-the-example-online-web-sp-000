@@ -28,7 +28,11 @@ function like(e) {
   errorModal.setAttribute('class', 'hidden')
   mimicServerCall().then(function(serverMessage){
     heart.innerText = glyphStates[heart.innerText];
-    heart.style.color = colorStates[heart.style.color];
+    if (heart.className == 'activated-heart') {
+      heart.className = ""
+    } else {
+      heart.setAttribute('class', 'activated-heart')
+    }
   }).catch(function(error) {
     errorModal.className = ""
   })
