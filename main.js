@@ -3,10 +3,43 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+const modal = document.querySelector('#modal')
+
+function hideError() {
+  modal.classList.add("hidden")
+};
+
+function showError() {
+  modal.classList.remove("hidden")
+}
+
+hideError()
+
+document.addEventListener('DOMContentLoaded', (event) => {
+
+  document.addEventListener("click", function (event) {
+    const likeStatus = event.srcElement.innerText
+    if (event.target.classList.contains('like-glyph')) {
+    }
 
 
+    mimicServerCall()
+    .then( () => {
+        event.srcElement.innerText = event.srcElement.innerText == EMPTY_HEART ? FULL_HEART : EMPTY_HEART;
+      })
+    .catch( () => {
+        let errorMessage = document.createElement('p')
+        errorMessage.innerText = "ERROR!  Gremlins."
+        modal.appendChild(errorMessage);
+        showError();
+        setTimeout(()=> {hideError(); modal.removeChild(errorMessage)}, 5000);
+      })
 
 
+  })
+
+
+});
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
