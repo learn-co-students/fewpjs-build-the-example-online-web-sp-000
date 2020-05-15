@@ -4,9 +4,39 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let glyphStates = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+let colorStates = {
+  "red" : "",
+  "": "red"
+};
 
+const errorModal = document.getElementById('modal')
+errorModal.setAttribute('class', 'hidden')
 
+document.querySelectorAll('.like-glyph').forEach(heart => {
+  heart.addEventListener('click', (e) => {
+    like(e)
+  })
+})
+
+function like(e) {
+  heart = e.target
+  errorModal.setAttribute('class', 'hidden')
+  mimicServerCall().then(function(serverMessage){
+    heart.innerText = glyphStates[heart.innerText];
+    if (heart.className == 'activated-heart') {
+      heart.className = ""
+    } else {
+      heart.setAttribute('class', 'activated-heart')
+    }
+  }).catch(function(error) {
+    errorModal.className = ""
+  })
+}
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
