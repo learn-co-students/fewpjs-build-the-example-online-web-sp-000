@@ -3,7 +3,25 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+const articles = document.querySelectorAll("article.media-post")
+for (let article of articles) {
+  const like = article.querySelector(".like")
+  like.addEventListener('click', function(event) {
+    if (like.classList.contains("activated-heart")) {
+      like.classList.remove("activated-heart")
+      like.querySelector(".like-glyph").innerText = EMPTY_HEART
+    } else {
+      mimicServerCall()
+      .then(() => {
+        like.addEventListener.classList("activated-heart")
+        like.querySelector(".like-glyph").innerText = FULL_HEART
+      })
+      .catch(() => {
 
+      })
+    }
+  });
+}
 
 
 
