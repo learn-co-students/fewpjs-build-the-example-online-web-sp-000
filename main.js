@@ -22,18 +22,20 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 
 function likeCallback(e) {
+  let modal = document.querySelector("#modal")
   let heart = e.target;
   mimicServerCall()
   .then(function(resp){
     heart.innerText = glyphStates[heart.innerText];
-    heart.style.color = colorStates[heart.style.color];
+    heart.classList.toggle("activated-heart")
+    modal.className = "hidden"
   })
   .catch(function(resp) {
     console.log(resp)
-    let modal = document.querySelector("#modal")
     let header = modal.firstElementChild
     header.innerText = resp
     modal.className = ""
+    setTimeout(function() {modal.className = 'hidden'}, 5000)
   })
 }
 
