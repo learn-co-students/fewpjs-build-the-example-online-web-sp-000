@@ -3,8 +3,9 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
-let errorMsg = document.querySelector("#modal")
-errorMsg.style.display = "none";
+
+//let errorMsg = document.querySelector("#modal")
+//errorMsg.style.display = "none";
 
 function errorMsg() {
   let hiddenModal = document.querySelector('#modal')
