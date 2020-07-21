@@ -4,45 +4,38 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-let modal = document.querySelector("#modal")
-modal.setAttribute("class", "hidden")
+let glyphStates = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+let colorStates = {
+  "red" : "",
+  "": "red"
+};
 
+let articleHearts = document.querySelectorAll(".like");
 
-let likes = document.querySelectorAll("span.like-glyph")
-likes.forEach(like => {
-  like.addEventListener("click", function() {
-    if(like.innerHTML === `${FULL_HEART}`) {
-      
-      fullHeart(like)
-    } else {
-      
-      mimicServerCall()
-      .then(() => {
-       emptyHeart(like)
-      })
-      
-      .catch((error) => {
-        modal.removeAttribute("class", "hidden")
-        modal.innerHTML = error
-        setTimeout(function() {
-          modal.setAttribute("class", "hidden")
-        }, 5000)
-      })
-    }
-  })
-})
-
-function emptyHeart(like) {
-  like.innerHTML = `${FULL_HEART}`
-  // like.className = "activated-heart"
-  like.setAttribute("class", "activated-heart")
+function likeCallback(e) {
+  let heart = e.target;
+  mimicServerCall("bogusUrl")
+   //OR: mimicServerCall("bogusUrl", {forceFailure: true})
+    .then(function(serverMessage){
+       heart.innerText = glyphStates[heart.innerText];
+       heart.style.color = colorStates[heart.style.color];
+    })
+    .catch(function(error) {
+      // Basic
+      // alert("Something went wrong!");
+      // or....
+      document.getElementById("modal").className = "";
+    });
 }
 
-function fullHeart(like) {
-  like.innerHTML = `${EMPTY_HEART}`
-  like.classList.remove("activated-heart")
+for (let glyph of articleHearts) {
+  glyph.addEventListener("click", likeCallback);
 }
+
 
 
 
