@@ -4,6 +4,33 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.addEventListener("DOMContentLoaded", () => {
+
+document.querySelectorAll('.like').forEach(like => {
+  like.addEventListener('click', function () {
+    mimicServerCall()
+    .then(function () {
+      if (like.children[0].innerHTML == EMPTY_HEART) {
+        like.children[0].innerHTML = FULL_HEART;
+        like.children[0].classList.add("activated-heart");
+      } else {
+        like.children[0].innerHTML = EMPTY_HEART;
+        like.children[0].classList.remove("activated-heart");
+      }
+    })
+    .catch(function (error) {
+      document.getElementById('modal').classList.remove('hidden');
+      document.getElementById('modal-message').innerHTML = error.message;
+      setTimeout(function() {
+        document.getElementById('modal').classList.add("hidden");
+      }, 5000);
+    })
+  })
+})
+
+
+
+});
 
 
 
