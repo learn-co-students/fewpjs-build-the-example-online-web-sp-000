@@ -4,7 +4,36 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.addEventListener("DOMContentLoaded", () => {
+  let likeSpan = document.querySelectorAll(".like-glyph");
+  let divErr = document.querySelector("#modal");
+  let pModalMsg = document.getElementById("modal-message");
+  
+  likeSpan.forEach(mimicServerCall)
 
+  function mimicServerCall(item, index) {
+    item.addEventListener("click", (e) => {
+      
+      fetch("https://anapioficeandfire.com/api/books")
+      .then(response => response.json())
+      .then(object => {
+        e.target.classList += " activated-heart"
+        if(e.target.innerText == FULL_HEART) {
+          e.target.innerText = EMPTY_HEART
+          e.target.classList = "like-glyph"
+        } else {
+          e.target.innerText = FULL_HEART
+        }
+      })
+      .catch((error) => { 
+        divErr.className = ""
+        pModalMsg.innerHTML = error;
+        setTimeout( () => {
+        divErr.className = "hidden" }, 5000 );
+      })
+    })
+  }
+})
 
 
 //------------------------------------------------------------------------------
