@@ -4,7 +4,33 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let heartStates = {
+  '♡': '♥',
+  '♥': '♡'
+};
 
+let colorStates = {
+  'red': '',
+  '': 'red'
+};
+
+let articleHearts = document.querySelectorAll('.like');
+
+function likeCallback(e) {
+  let heart = e.target;
+  mimicServerCall('fakeUrl')
+    .then(function(serverMessage){
+      heart.innerText = heartStates[heart.innerText];
+      heart.style.color = colorStates[heart.style.color];
+    })
+    .catch(function(error) {
+      document.getElementById('modal').className = '';
+    });
+}
+
+for (let heart of articleHearts){
+  heart.addEventListener('click', likeCallback)
+}
 
 
 //------------------------------------------------------------------------------
