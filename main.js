@@ -4,8 +4,46 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+// Constant declarations
+const modal = document.getElementById('modal');
+const modalMessage = document.getElementById('modal-message');
 
+// Functions
+function showError(message)
+{
+  modal.classList.remove("hidden");
+  modal.children[1].innerHTML = message;
+  timeoutID = setTimeout(hideError, 5000);
+}
 
+function hideError()
+{
+  modal.classList.add("hidden");
+}
+
+function toggleLike(caller)
+{
+  if (caller.classList.contains("activated-heart"))
+  {
+    caller.textContent = EMPTY_HEART;    
+    caller.classList.remove("activated-heart");
+  }
+  else
+  {
+  mimicServerCall()
+  .then(function(response) {
+    caller.textContent = FULL_HEART;
+    caller.classList.add("activated-heart");
+  })
+  .catch(function(error) {
+    showError(error);
+  });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  hideError();
+});
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
