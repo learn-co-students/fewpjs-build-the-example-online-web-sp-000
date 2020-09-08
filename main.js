@@ -4,19 +4,19 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 document.addEventListener("DOMContentLoaded", () => {
-	const likeBtns = document.querySelectorAll(".like-glyph"),
+	const likeBtns = document.querySelectorAll(".like"),
 	errorModal = document.querySelector("#modal");
 
 	likeBtns.forEach(btn => { btn.addEventListener("click", (event) => {
-		mimicServerCall()
+		mimicServerCall("fake")
 		.then(function() {
-			let heart = event.target
+			let heart = event.target.parentElement.querySelector(".like-glyph")
 			if (heart.innerText === EMPTY_HEART) {
 				heart.innerText = FULL_HEART;
-				heart.classList.add("activated-heart");
+				event.target.parentElement.classList.add("activated-heart");
 			} else {
 				heart.innerText = EMPTY_HEART;
-				heart.classList.remove("activated-heart");
+				event.target.parentElement.classList.remove("activated-heart");
 			}
 		})
 		.catch(function(error) {
