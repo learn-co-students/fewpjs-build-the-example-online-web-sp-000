@@ -6,11 +6,16 @@ const FULL_HEART = '♥'
 
 //.then() returns a promise 
 //takes two arguments, callback functions for the success and failure cases of the Promise 
-const modal = document.getElementById('modal')
+const modal = document.getElementById('modal') //grabbing modal element in html
 const likeButtons = document.getElementsByClassName('like-glyph')
+// <li class="like">Like! <span class="like-glyph">&#x2661;</span></li>
+//returns like element (by class name which is like-glyph)
 
-modal.className = "hidden"
 
+modal.className = "hidden" //hidden class added to error modal 
+
+//for...of statement creates a loop iterating over iterable objects:
+//iterating over each like button ?
 for (const heart of likeButtons) {
   heart.addEventListener('click', () => {
     mimicServerCall() //invoke mimicServerCall function to simulate making a server request 
@@ -22,6 +27,7 @@ for (const heart of likeButtons) {
     })
   })
 }
+//event fires when the initial HTML of the document has been loaded
 document.addEventListener('DOMContentLoaded', function() {
 
 })
