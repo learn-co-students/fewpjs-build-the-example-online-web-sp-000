@@ -2,10 +2,29 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+// When a user clicks on an empty heart ("Recognizing events")
+// First grab all the heart icons and set them equal to a const variable so we can eventually listen for events on them
 
+const likedHearts = document.querySelectorAll('.like-glyph')
+const hidden = document.querySelector('#modal')
+hidden.className = 'hidden'
 
-
+for (let i = 0; i < likedHearts.length; i++)
+  likedHearts[i].addEventListener('click', function() {
+    if (likedHearts[i].innerHTML == EMPTY_HEART){
+      mimicServerCall()
+      .then(resp => {
+        likedHearts[i].innerHTML = FULL_HEART;
+        likedHearts[i].className = '.activated_heart';
+      })
+      .catch((err) => {
+        setTimeout(() => hidden.className = '', 5000)
+      });
+    } else {
+      likedHearts[i].innerHTML = EMPTY_HEART;
+      likedHearts[i].removeAttribute("class", "activated_heart");
+    }
+  });
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
