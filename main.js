@@ -1,4 +1,5 @@
 // Defining text characters for the empty and full hearts for you to use later.
+//unicodes 
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
