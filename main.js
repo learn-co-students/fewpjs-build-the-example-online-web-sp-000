@@ -12,6 +12,7 @@ for (const likeGraphic of likeGraphics){
 
   likeGraphic.addEventListener('click', function(e){
     // mimicServerCall();
+    e.target.innerHTML = FULL_HEART;
     e.target.style.color = "red";
   });
 }
