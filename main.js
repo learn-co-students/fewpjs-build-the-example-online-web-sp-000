@@ -21,7 +21,10 @@ for (const likeGraphic of likeGraphics){
         }
       })
       .catch (function(error){
-        console.log(error)
+        //console.log(error)
+        document.getElementById("modal").classList.remove("hidden");
+        document.getElementById("modal").innerHTML = error;
+        setTimeout(function(){document.getElementById("modal").className = "hidden"}, 5000);
       });
   });
 }
