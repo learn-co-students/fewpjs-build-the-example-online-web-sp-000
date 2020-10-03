@@ -3,8 +3,18 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+document.getElementById("modal").className = "hidden";
 
 
+const likeGraphics = document.querySelectorAll('.like-glyph');
+
+for (const likeGraphic of likeGraphics){
+
+  likeGraphic.addEventListener('click', function(e){
+    // mimicServerCall();
+    e.target.style.color = "red";
+  });
+}
 
 
 //------------------------------------------------------------------------------
