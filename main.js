@@ -3,7 +3,16 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+function switchHeart(article) {
+  heart = article.getElementsByClassName('like-glyph')[0];
+  heart.innerHTML = heart.innerHTML == FULL_HEART ? EMPTY_HEART : FULL_HEART;
+  heart.setAttribute('class', 'activated-heart');
+}
 
+function addEvent2allHearts() {
+  hearts = article.getElementsByClassName('like-glyph');
+  hearts.forEach(heart => .addEventListener("click", switchHeart(article))
+}
 
 
 
