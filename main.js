@@ -2,8 +2,35 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+const states = {
+  '♡': '♥',
+  '♥': '♡',
+  'activated-heart': 'like-glyph',
+  'like-glyph': 'activated-heart',
+  'hidden': 'none',
+  'none': 'hidden'
+}
 
+const hearts = document.getElementsByClassName('like-glyph');
+
+function like(e) {
+  const heart = e.target
+
+  mimicServerCall()
+    .then(() => {
+      heart.className = states[heart.className]
+      heart.innerHTML = states[heart.innerHTML]
+    })
+    .catch((e) => {
+      console.log(e)
+      const error = document.getElementById('modal')
+      error.className = states[error.className]
+    })
+}
+
+for (const heart of hearts) {
+  heart.addEventListener('click', e => like(e))
+}
 
 
 
