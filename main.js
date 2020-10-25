@@ -2,16 +2,35 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
+const states = {
+  '♡': '♥',
+  '♥': '♡',
+  'activated-heart': '',
+  'none': 'activated-heart'
+}
+
+const hearts = document.getElementsByClassName('like-glyph');
+
 // Your JavaScript code goes here!
-function switchHeart(article) {
-  heart = article.getElementsByClassName('like-glyph')[0];
-  heart.innerHTML = heart.innerHTML == FULL_HEART ? EMPTY_HEART : FULL_HEART;
+function like(e) {
+  heart = e.target
+
+  mimicServerCall()
+    .then((obj) => {debugger})
+  
+  heart.innerHTML = states[heart.innerHTML]
   heart.setAttribute('class', 'activated-heart');
 }
 
 function addEvent2allHearts() {
-  hearts = article.getElementsByClassName('like-glyph');
-  hearts.forEach(heart => .addEventListener("click", switchHeart(article))
+  hearts = document.getElementsByClassName('like-glyph');
+  for (const heart of hearts) {
+    heart.addEventListener('click', e => switchHeart(e))
+  }
+}
+
+for (const heart of hearts) {
+  heart.addEventListener('click', e => like(e))
 }
 
 
