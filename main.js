@@ -11,22 +11,15 @@ const states = {
 
 const hearts = document.getElementsByClassName('like-glyph');
 
-// Your JavaScript code goes here!
 function like(e) {
   heart = e.target
 
   mimicServerCall()
-    .then((obj) => {debugger})
-  
-  heart.innerHTML = states[heart.innerHTML]
-  heart.setAttribute('class', 'activated-heart');
-}
-
-function addEvent2allHearts() {
-  hearts = document.getElementsByClassName('like-glyph');
-  for (const heart of hearts) {
-    heart.addEventListener('click', e => switchHeart(e))
-  }
+    .then(() => {
+      heart.className = state.[className]
+      heart.innerHTML = states[heart.innerHTML]
+    })
+    .catch((e) => {debugger})
 }
 
 for (const heart of hearts) {
