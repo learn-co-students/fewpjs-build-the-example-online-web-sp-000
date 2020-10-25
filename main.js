@@ -5,21 +5,27 @@ const FULL_HEART = '♥'
 const states = {
   '♡': '♥',
   '♥': '♡',
-  'activated-heart': '',
-  'none': 'activated-heart'
+  'activated-heart': 'like-glyph',
+  'like-glyph': 'activated-heart',
+  'hidden': 'none',
+  'none': 'hidden'
 }
 
 const hearts = document.getElementsByClassName('like-glyph');
 
 function like(e) {
-  heart = e.target
+  const heart = e.target
 
   mimicServerCall()
     .then(() => {
-      heart.className = state.[className]
+      heart.className = states[heart.className]
       heart.innerHTML = states[heart.innerHTML]
     })
-    .catch((e) => {debugger})
+    .catch((e) => {
+      console.log(e)
+      const error = document.getElementById('modal')
+      error.className = states[error.className]
+    })
 }
 
 for (const heart of hearts) {
