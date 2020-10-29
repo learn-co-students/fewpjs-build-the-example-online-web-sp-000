@@ -3,50 +3,39 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
-const errorBanner = document.getElementById('modal')
-const likeButton = document.querySelectorAll('.like-glyph')
-const errorMessage = document.getElementById('modal-message');
-
-document.addEventListener('DOMContentLoaded', function() {
-  errorBanner.setAttribute("class", "hidden")
-})
+let error = document.getElementById('modal')
 
 
-function toggleLikeButton(){
-  mimicServerCall()
-  .then(() => changeLikeButton)
-  .catch(error => errorDisplay(error))
-};
+function hideError() {
+  error.setAttribute('class', 'hidden');
+}
+hideError();
 
 
-likeButton.forEach(item => {
-  item.addEventListener('click', event => {
-    changeLikeButton(item)
+let hearts = document.getElementsByClassName('like-glyph')
+
+
+for (const heart of hearts) {
+  heart.addEventListener('click', function(e) {
+    mimicServerCall('fakeURL')
+    .then(function(response) {
+      if (heart.className === 'like-glyph activated-heart') {
+        heart.setAttribute('class', 'like-glyph');
+        heart.textContent = EMPTY_HEART;
+      } else { 
+        heart.setAttribute('class', 'like-glyph activated-heart')
+        heart.textContent = FULL_HEART;
+      }
+    })
+    .catch(function(errorMessage) {
+      error.removeAttribute('class', 'hidden');
+      let p = document.createElement('p');
+      p.textContent = errorMessage;
+      error.appendChild(p);
+      setTimeout(hideError(), 5000)
+    })
   })
-})
-
-function changeLikeButton(item) {
-  if (item.innerHTML == FULL_HEART)
-  {item.innerHTML = EMPTY_HEART;
-    item.removeAttribute('class', 'activated-heart')
-  }
-  else if (item.innerHTML == EMPTY_HEART)
-  {item.innerHTML = FULL_HEART;
-    item.setAttribute('class', 'activated-heart')
-  }
 }
-
-function errorDisplay(error) {
-  errorMessage.innerText = message;
-  errorBanner.classList.remove('hidden');
-  setTimeout(() => {
-    errorBanner.classList.add('hidden');
-  }, 5000);
-}
-
-
-
-
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
