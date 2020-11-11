@@ -4,6 +4,36 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let modal = document.getElementById('modal')
+
+// modal.style.visibility = "hidden"
+modal.className = "hidden"
+
+let hearts = document.querySelectorAll('.like')
+
+function someFunction(e) {
+  let heart = e.target;
+  mimicServerCall()
+  .then(resp => {
+    heart.innerText = FULL_HEART
+    heart.className = "activated-heart"
+  })
+  .catch(error => {
+    console.log(error)
+    modal.className = ""
+    modal.innerHTML = error
+    setTimeout(function() {
+      modal.className = 'hidden'
+    },
+    5000)
+  })
+}
+
+for (heart of hearts) {
+  heart.addEventListener('click', someFunction);
+}
+
+
 
 
 
