@@ -7,7 +7,8 @@ chai.use( spies );
 
 describe( "main.js", () => {
   it("contains a hidden modal", () => {
-    let modal = document.querySelector('.hidden')
+    // let modal = document.querySelector('.hidden')
+    let modal = document.getElementsByClassName('hidden')
     expect(modal).not.to.equal(null)
   } )
 } )
