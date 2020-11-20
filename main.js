@@ -4,7 +4,19 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-
+document.addEventListener("DOMContentLoaded", function() {
+  const hearts = document.getElementsByClassName("like-glyph")
+  // have a collection of hearts
+  // add an event listener to each heart
+  for (const heart of hearts){
+    heart.addEventListener("click", (e) => {
+      // make a server call
+      // when successful, change the heart, if it is empty, make it full
+      // else if its full, make it empty
+    })
+  }
+  console.log(hearts)
+});
 
 
 //------------------------------------------------------------------------------
