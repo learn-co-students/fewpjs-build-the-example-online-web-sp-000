@@ -7,6 +7,7 @@ const FULL_HEART = '♥'
 document.addEventListener("DOMContentLoaded", function() {
   const modal = document.querySelector('#modal')
   const hearts = document.getElementsByClassName("like-glyph")
+  console.log('modal: ', modal)
   // get a collection of hearts, add an event listener to each heart
   for (const heart of hearts){
     heart.addEventListener("click", () => {
