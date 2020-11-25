@@ -6,12 +6,13 @@ const FULL_HEART = '♥'
 
 document.addEventListener("DOMContentLoaded", function() {
   const hearts = document.getElementsByClassName("like-glyph")
-  // have a collection of hearts
+  // get a collection of hearts
   // add an event listener to each heart
   for (const heart of hearts){
-    heart.addEventListener("click", (e) => {
+    heart.addEventListener("click", () => {
       // make a server call
-      // when successful, change the heart, if it is empty, make it full
+      // when successful, change the heart
+      // if it is empty, make it full, add new class
       // else if its full, make it empty
     })
   }
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
 
+// mimicServerCall utilize just like fetch
 function mimicServerCall(url="http://mimicServer.example.com", config={}) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
