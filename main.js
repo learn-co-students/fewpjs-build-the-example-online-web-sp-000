@@ -11,12 +11,18 @@ document.addEventListener("DOMContentLoaded", function() {
   for (const heart of hearts){
     heart.addEventListener("click", () => {
       // make a server call
-      // when successful, change the heart
-      // if it is empty, make it full, add new class
-      // else if its full, make it empty
+      mimicServerCall() // return a promise
+      .then(() => {
+        // when successful, change the heart
+        // if it is empty, make it full, add new class
+        // else if its full, make it empty
+        heart.innerHTML = FULL_HEART
+      })
+      // promises have the .then()
+      // 1st .then take the response, jsonify it
+      // 2nd .then take the jsonified response, do something with it
     })
   }
-  console.log(hearts)
 });
 
 
