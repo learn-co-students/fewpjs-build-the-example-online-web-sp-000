@@ -5,22 +5,32 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.querySelector('#modal')
   const hearts = document.getElementsByClassName("like-glyph")
-  // get a collection of hearts
-  // add an event listener to each heart
+  // get a collection of hearts, add an event listener to each heart
   for (const heart of hearts){
     heart.addEventListener("click", () => {
       // make a server call
       mimicServerCall() // return a promise
       .then(() => {
-        // when successful, change the heart
-        // if it is empty, make it full, add new class
+        // when successful, change the heart, if it is empty, make it full, add new class
         // else if its full, make it empty
-        heart.innerHTML = FULL_HEART
+        if (heart.innerHTML === EMPTY_HEART){
+          heart.innerHTML = FULL_HEART
+          heart.className = "activated-heart"
+        } else {
+          heart.innerHTML = EMPTY_HEART
+          heart.className = "like-glyph"
+        }
       })
-      // promises have the .then()
-      // 1st .then take the response, jsonify it
-      // 2nd .then take the jsonified response, do something with it
+      .catch(error => {
+        modal.hidden = false
+        const modalMessage = document.querySelector("#modal-message")
+        modalMessage.innerHTML = error
+        setTimeout(() => {
+          modal.hidden = true
+        }, 5000);        
+      })
     })
   }
 });
