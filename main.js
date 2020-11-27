@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function() {
   const hearts = document.getElementsByClassName("like-glyph")
   // get a collection of hearts, add an event listener to each heart
   for (const heart of hearts){
-    heart.addEventListener("click", onClick(e, heart) )
+    heart.addEventListener("click", onClick)
   }
   // make a server call
-  function onClick(e, heart) {
+  function onClick(heart) {
     mimicServerCall() // return a promise
     .then(() => {
       // when successful, change the heart, if it is empty, make it full, add new class
