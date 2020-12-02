@@ -2,10 +2,37 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+// function called on a .like object to alternate its state
+function heartChanger(likeButton) {
+  let heart = likeButton.querySelector(".like-glyph")
+  
+  if (heart.classList.contains("activated-heart")) {
+    heart.classList.remove("activated-heart")
+    heart.innerText = EMPTY_HEART
+  }
+  else {
+    heart.classList.add("activated-heart")
+    heart.innerText = FULL_HEART
+  }
+}
 
+// Like button click listener
+const likeButtons = document.getElementsByClassName('like')
 
-
+for (let i = 0; i < likeButtons.length; i++) {
+  likeButtons[i].addEventListener("click", function() {
+    
+    mimicServerCall()
+    .then(function(object) {
+      heartChanger(likeButtons[i]);
+    })
+    .catch(function(error) {
+      let errorDiv = document.getElementById('modal')
+      errorDiv.classList.remove("hidden")
+      setTimeout(function(){ errorDiv.classList.add("hidden"); }, 5000);
+    });
+  })
+}
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
