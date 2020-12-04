@@ -44,7 +44,8 @@ const hideErrorModal = () => {
 }
 
 const unhideErrorModal = () => {
-    let errorModal = document.querySelector(".hidden");
+    let errorModal = document.getElementById("modal");
+    errorModal.classList.remove("hidden");
     errorModal.hidden = false;
 }
 
