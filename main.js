@@ -3,9 +3,24 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+/*
+  The three pillars:
+    - Manipulating the DOM
+    - Recognizing JavaScript events
+    - Communicating with the server
+*/
+// Dom content loaded event
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Add the .hidden class to the error modal in the HTML 
+  // so it does not appear when the page first loads
+  hideErrorModal();
+});
 
-
-
+const hideErrorModal = () => {
+  let errorModal = document.querySelector("#modal");
+  errorModal.className = "hidden";
+  errorModal.hidden = true;
+}
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
