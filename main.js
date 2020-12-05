@@ -11,7 +11,6 @@ const FULL_HEART = '♥'
 */
 // Add the .hidden class to the error modal in the HTML 
 // so it does not appear when the page first loads
-// hideErrorModal();
 let errorModal = document.querySelector("#modal");
 errorModal.className = "hidden";
 
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let likes = document.querySelectorAll(".like");
     likes.forEach(like => {
         like.addEventListener("click", function(event) {
-            let destUrl = "/Users/jaycruz/Flatiron School Docs/fewpjs-build-the-example-online-web-sp-000/index.html";
+            let destUrl = "http://127.0.0.1:5500/index.html";
             let configObj = {
                 method: "POST",
                 headers: {
@@ -31,33 +30,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 },
                 body: JSON.stringify(event.target)
             };
-            debugger;
+
             mimicServerCall(destUrl, configObj)
                 .then(response => response.json())
+                .then(json => {
+                    debugger;
+                })
                 .catch(error => {
+                    // When the server returns a failure status
                     unhideErrorModal();
                     displayModalErrorMessage(error.message);
+                    setTimeout(function() {
+                        let errorModal = document.querySelector("#modal");
+                        errorModal.className = "hidden";
+                    }, "5000")
                 })
         })
     });
 
 });
 
-const hideErrorModal = () => {
-    let errorModal = document.querySelector("#modal");
-    errorModal.className = "hidden";
-    errorModal.hidden = true;
-}
-
 const unhideErrorModal = () => {
     let errorModal = document.getElementById("modal");
     errorModal.classList.remove("hidden");
-    errorModal.hidden = false;
 }
 
 const displayModalErrorMessage = (msg) => {
     let modalMsg = document.querySelector("#modal-message");
-    modalMsg.innerHTML = msg;
+    modalMsg.innerText = msg;
 }
 
 //------------------------------------------------------------------------------
