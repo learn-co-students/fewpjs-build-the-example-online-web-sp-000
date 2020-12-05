@@ -9,16 +9,18 @@ const FULL_HEART = '♥'
     - Recognizing JavaScript events
     - Communicating with the server
 */
+// Add the .hidden class to the error modal in the HTML 
+// so it does not appear when the page first loads
+// hideErrorModal();
+let errorModal = document.querySelector("#modal");
+errorModal.className = "hidden";
+
 // Dom content loaded event
 document.addEventListener("DOMContentLoaded", (event) => {
-    // Add the .hidden class to the error modal in the HTML 
-    // so it does not appear when the page first loads
-    hideErrorModal();
-
     // When a user clicks on an empty heart ("Recognizing events")
     // Invoke mimicServerCall to simulate making a server request
-    let likeGlyph = document.querySelector(".like-glyph");
-    likeGlyph.addEventListener("click", function(event) {
+    let like = document.querySelector(".like");
+    like.addEventListener("click", function(event) {
         let destUrl = "/Users/jaycruz/Flatiron School Docs/fewpjs-build-the-example-online-web-sp-000/index.html";
         let configObj = {
             method: "POST",
@@ -31,6 +33,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         mimicServerCall(destUrl, configObj)
             .then(response => response.json())
             .catch(error => {
+                debugger;
                 unhideErrorModal();
                 displayModalErrorMessage(error.message);
             })
