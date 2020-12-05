@@ -19,25 +19,28 @@ errorModal.className = "hidden";
 document.addEventListener("DOMContentLoaded", (event) => {
     // When a user clicks on an empty heart ("Recognizing events")
     // Invoke mimicServerCall to simulate making a server request
-    let like = document.querySelector(".like");
-    like.addEventListener("click", function(event) {
-        let destUrl = "/Users/jaycruz/Flatiron School Docs/fewpjs-build-the-example-online-web-sp-000/index.html";
-        let configObj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(event.target)
-        };
-        mimicServerCall(destUrl, configObj)
-            .then(response => response.json())
-            .catch(error => {
-                debugger;
-                unhideErrorModal();
-                displayModalErrorMessage(error.message);
-            })
-    })
+    let likes = document.querySelectorAll(".like");
+    likes.forEach(like => {
+        like.addEventListener("click", function(event) {
+            let destUrl = "/Users/jaycruz/Flatiron School Docs/fewpjs-build-the-example-online-web-sp-000/index.html";
+            let configObj = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(event.target)
+            };
+            debugger;
+            mimicServerCall(destUrl, configObj)
+                .then(response => response.json())
+                .catch(error => {
+                    unhideErrorModal();
+                    displayModalErrorMessage(error.message);
+                })
+        })
+    });
+
 });
 
 const hideErrorModal = () => {
