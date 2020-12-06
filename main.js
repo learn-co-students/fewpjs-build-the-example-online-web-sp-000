@@ -15,26 +15,26 @@ let errorModal = document.querySelector("#modal");
 errorModal.className = "hidden";
 
 // Dom content loaded event
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
     // When a user clicks on an empty heart ("Recognizing events")
     // Invoke mimicServerCall to simulate making a server request
     let likes = document.querySelectorAll(".like");
     likes.forEach(like => {
         like.addEventListener("click", function(event) {
+            event.preventDefault();
             let destUrl = "http://127.0.0.1:5500/index.html";
-            let configObj = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(event.target)
-            };
 
-            mimicServerCall(destUrl, configObj)
-                .then(response => response.json())
-                .then(json => {
-                    debugger;
+            mimicServerCall(destUrl)
+                .then(serverMsg => {
+                    let heart = document.querySelector(".like-glyph");
+                    if (heart.innerText == EMPTY_HEART) {
+                        // Change the heart to a full heart
+                        heart.innerText = FULL_HEART;
+                        heart.className = "activated-heart";
+                    } else {
+                        // Change the heart back to an empty heart
+                        heart.innerText = EMPTY_HEART;
+                    }
                 })
                 .catch(error => {
                     // When the server returns a failure status
