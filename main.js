@@ -1,12 +1,36 @@
-// Defining text characters for the empty and full hearts for you to use later.
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+let glyphStates = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+let colorStates = {
+  "red" : "",
+  "": "red"
+};
 
+let articleHearts = document.querySelectorAll(".like");
+let modal = document.getElementById("modal");
 
+function likeCallback(e) {
+  let heart = e.target;
+  mimicServerCall("bogusUrl")
+    .then(function(serverMessage){
+       heart.innerText = glyphStates[heart.innerText];
+       heart.style.color = colorStates[heart.style.color];
+    })
+    .catch(function(error) {
+      modal.className = "";
+    });
+}
 
+for (let glyph of articleHearts) {
+  glyph.addEventListener("click", likeCallback);
+}
+
+// setTimeout not working
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
