@@ -2,13 +2,6 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
-/*
-  The three pillars:
-    - Manipulating the DOM
-    - Recognizing JavaScript events
-    - Communicating with the server
-*/
 // Add the .hidden class to the error modal in the HTML 
 // so it does not appear when the page first loads
 let errorModal = document.querySelector("#modal");
@@ -22,32 +15,35 @@ document.addEventListener("DOMContentLoaded", () => {
     likes.forEach(like => {
         like.addEventListener("click", function(event) {
             event.preventDefault();
-
-            mimicServerCall()
-                .then(serverMsg => {
-                    let heart = event.target;
-                    if (heart.innerText == EMPTY_HEART) {
-                        // Change the heart to a full heart
-                        heart.innerText = FULL_HEART;
-                        heart.className = "activated-heart";
-                    } else {
-                        // Change the heart back to an empty heart
-                        heart.innerText = EMPTY_HEART;
-                    }
-                })
-                .catch(error => {
-                    // When the server returns a failure status
-                    unhideErrorModal();
-                    displayModalErrorMessage(error.message);
-                    setTimeout(function() {
-                        let errorModal = document.querySelector("#modal");
-                        errorModal.className = "hidden";
-                    }, "5000")
-                })
+            handleLikes(event);
         })
     });
 
 });
+
+const handleLikes = (event) => {
+    mimicServerCall()
+        .then(serverMsg => {
+            let heart = event.target;
+            if (heart.innerText == EMPTY_HEART) {
+                // Change the heart to a full heart
+                heart.innerText = FULL_HEART;
+                heart.className = "activated-heart";
+            } else {
+                // Change the heart back to an empty heart
+                heart.innerText = EMPTY_HEART;
+            }
+        })
+        .catch(error => {
+            // When the server returns a failure status
+            unhideErrorModal();
+            displayModalErrorMessage(error);
+            setTimeout(function() {
+                let errorModal = document.querySelector("#modal");
+                errorModal.className = "hidden";
+            }, "5000")
+        })
+}
 
 const unhideErrorModal = () => {
     let errorModal = document.getElementById("modal");
