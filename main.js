@@ -22,11 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
     likes.forEach(like => {
         like.addEventListener("click", function(event) {
             event.preventDefault();
-            let destUrl = "http://127.0.0.1:5500/index.html";
 
-            mimicServerCall(destUrl)
+            mimicServerCall()
                 .then(serverMsg => {
-                    let heart = document.querySelector(".like-glyph");
+                    let heart = event.target;
                     if (heart.innerText == EMPTY_HEART) {
                         // Change the heart to a full heart
                         heart.innerText = FULL_HEART;
