@@ -1,11 +1,10 @@
 // Defining text characters for the empty and full hearts for you to use later.
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
-document.addEventListener("DOMContentLoaded",()=>{
 let modal= document.querySelector("#modal")
 modal.classList.add("hidden")
 
-
+document.addEventListener("DOMContentLoaded",()=>{
   document.addEventListener('click', (e) =>{
     mimicServerCall()
       .then(resp => hitTheLikeButton(e))
