@@ -1,10 +1,11 @@
 // Defining text characters for the empty and full hearts for you to use later.
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
+document.addEventListener("DOMContentLoaded",()=>{
 let modal= document.querySelector("#modal")
 modal.classList.add("hidden")
 
-document.addEventListener("DOMContentLoaded",()=>{
+
   document.addEventListener('click', (e) =>{
     mimicServerCall()
       .then(resp => hitTheLikeButton(e))
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         changeModalMessage(error)
         modal.classList.remove("hidden");
         setTimeout(function(){
-          modal.classList.add("hidden")}, 2000);
+          modal.classList.add("hidden")}, 5000);
         console.log(error);
       });
   });
@@ -22,8 +23,7 @@ function changeModalMessage(resp){
   let modalMessage = document.querySelector('#modal-message')
   modalMessage.innerHTML = resp;
   setTimeout(function(){
-    modalMessage.innerHTML = ""}, 2000);
-  console.log(modalMessage);
+    modalMessage.innerHTML = ""}, 5000);
 };
 
 function hitTheLikeButton(e){
@@ -37,7 +37,6 @@ function hitTheLikeButton(e){
     liked.classList.add("like-glyph");
     liked.innerHTML = EMPTY_HEART;
   };
-  console.log(liked)
 }
 
 //------------------------------------------------------------------------------
