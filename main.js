@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(`${e} Nah still bound`);
         console.log(`${e} Nah still bound`);
   }); 
-
+  // fetch request
   if(e.target.className === "like-glyph"){
     console.log(`Gretness`);
   };
