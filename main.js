@@ -1,37 +1,37 @@
-// Defining text characters for the empty and full hearts for you to use later.
+// // Defining text characters for the empty and full hearts for you to use later.
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
-const post = document.querySelectorAll(".media-post");
 
-// likeButton.addEventListener('click', function(event) {
-//     alert("Hello World!");
-// });
+let glyphStates = {
+  "♡": "♥",
+  "♥": "♡",
+};
 
-
-// window.addEventListener('DOMContentLoaded', (event) => {
-//   console.log('DOM fully loaded and parsed');
-// });
-
-window.addEventListener('click', (event) => {
-  console.log('Nah still bound');
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-   const likeButton = document.querySelectorAll(".like-glpyh");
-
-  likeButton.addEventListener('click', (e) => {
-    console.log(`${e} Nah still bound`);
-        console.log(`${e} Nah still bound`);
-  }); 
-  // fetch request
-  if(e.target.className === "like-glyph"){
-    console.log(`Gretness`);
-  };
-});
+let colorStates = {
+  "red" : "",
+  "": "red"
+};
 
 
+let likeButtons = document.querySelectorAll(".like-glyph");
+
+function clickHeart(e) {
+  let heart = e.target;
+  mimicServerCall()
+    .then(function(serverMessage){
+      heart.innerText = glyphStates[heart.innerText];
+      heart.style.color = colorStates[heart.style.color];
+    })
+    .catch(function(error) {
+      alert("Something went wrong!");
+    });
+}
+
+for (let heart of likeButtons) {
+  heart.addEventListener("click", clickHeart); 
+}
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
