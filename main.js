@@ -2,7 +2,6 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
 let glyphStates = {
   "♡": "♥",
   "♥": "♡"
@@ -36,9 +35,6 @@ for (let glyph of articleHearts) {
 }
 
 
-
-
-
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
@@ -55,3 +51,4 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     }, 300);
   });
 }
+
