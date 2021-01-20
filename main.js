@@ -2,8 +2,7 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 const articles = document.querySelectorAll('.media-post');
-// const likeButtons = document.getElementsByClassName('like-glyph');
-  const errorMsg = document.getElementById('modal');
+const errorMsg = document.getElementById('modal');
 
 // Your JavaScript code goes here!
 document.addEventListener('DOMContentLoaded', () => {
