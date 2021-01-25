@@ -5,7 +5,7 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 let likeButton = document.querySelectorAll('.like');
 for(let i=0;i<likeButton.length;i++){
-likeButton[i].addEventListener('click', likeCallback );
+  likeButton[i].addEventListener('click', likeCallback );
 }
 
 
