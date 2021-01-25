@@ -3,8 +3,28 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+let likeButton = document.querySelectorAll('.like');
+for(let i=0;i<likeButton.length;i++){
+likeButton[i].addEventListener('click', likeCallback );
+}
 
 
+function likeCallback(evt){
+  let heart = evt.target;
+  mimicServerCall("bogusUrl")
+  .then(function(serverMessage){
+    if (heart.innerText == EMPTY_HEART){
+      heart.innerText = FULL_HEART;
+      heart.style.color = "red";
+    } else {
+      heart.innerText = EMPTY_HEART;
+      heart.style.color = "";
+    }
+  })
+  .catch(function(error){
+    alert("Error");
+  })
+}
 
 
 //------------------------------------------------------------------------------
