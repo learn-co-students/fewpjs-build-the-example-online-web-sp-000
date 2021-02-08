@@ -4,8 +4,36 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.addEventListener("DOMContentLoaded", () => {
+  let modal = document.getElementById("modal")
+  modal.className = "hidden";
+  const likes = document.getElementsByClassName("like");
 
+  function heartCallback(e){
+    let heart = e.target;
+    mimicServerCall("fakeUrl")
+    .then( resp => {
+      if (heart.innerText === EMPTY_HEART) {
+        heart.innerText = FULL_HEART;
+        heart.setAttribute("class", "activated-heart");
+      } else {
+        heart.innerText = EMPTY_HEART;
+        heart.classList.remove("activated-heart");
+      }
+    })
+    .catch( err => {
+      modal.classList.remove("hidden");
+      const error = document.getElementById("modal-message")
+      error.innerText = err;
+      setTimeout(() => {modal.className = "hidden"}, 5000);
+    })
+  }
 
+  for (let glyph of likes){
+    glyph.addEventListener("click", heartCallback);
+  }
+
+})
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
