@@ -4,12 +4,32 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let errorBan = document.getElementById("modal");
+errorBan.hidden = true;
+let likes = document.querySelectorAll(".like-glyph");
+let heart = likes.target
+function likeCallback(e) {
+  let like = e.target
+  mimicServerCall()
+  .then (() => {
+  like.innerHTML = FULL_HEART
+  })
+  .catch((error) => {
+  errorBan.hidden = false;
+  errorBan.innerHTML = error;
+  setTimeout( () => {
+    errorBan.hidden = true}, 5000)
+});
+}
 
-
+for (let glyph of likes) {
+  addEventListener("click", likeCallback)
+}
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
+
 
 function mimicServerCall(url="http://mimicServer.example.com", config={}) {
   return new Promise(function(resolve, reject) {
