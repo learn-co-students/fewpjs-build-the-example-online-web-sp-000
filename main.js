@@ -5,7 +5,7 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById('modal');
-  modal.hidden = true;
+  modal.className = "hidden";
   let likeHeart = document.querySelectorAll('.like-glyph')
   for (const heart of likeHeart) {
     heart.addEventListener("click", (e) => {
@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .catch(error => {
-          modal.hidden = false
+          modal.className = ""
           let p = document.getElementById('modal-message')
           p.innerText = error
           setTimeout(() => {
-            modal.hidden = true;
+            modal.className = "hidden";
           }, 5000);
         })
     })
