@@ -2,10 +2,10 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 error = document.querySelector("#modal")
-error.classList.add("hidden")
+//error.classList.add("hidden")
 function displayError() {
   error.classList.remove("hidden");
-  setTimeout(function(){ error.classList.add("hidden"); }, 3000)
+  setTimeout(function(){ error.classList.add("hidden"); }, 5000)
   
 }
 // Your JavaScript code goes here!
@@ -22,11 +22,11 @@ for(const like of likes) {
 function heart (like) {
   if(like.classList.contains("activated-heart")){
     like.classList.remove("activated-heart")
-    like.innerText = EMPTY_HEART
+    like.innerHTML = EMPTY_HEART
   }
   else {
     like.classList.add("activated-heart")
-    like.innerText = FULL_HEART
+    like.innerHTML = FULL_HEART
   }
   
 }
