@@ -4,6 +4,26 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.addEventListener("DOMContentLoaded", () => {
+  
+  const heartIcons = document.getElementsByClassName('like-glyph')
+  const EMPTY_HEART = '♡'
+  const FULL_HEART = '♥'
+
+  for (let icon of heartIcons) {
+    icon.addEventListener("click", (e) => {
+      if (e.target.innerText == EMPTY_HEART) {
+        e.target.innerText = FULL_HEART
+        e.target.style.color = "red"
+      }
+      else {
+        e.target.innerText = EMPTY_HEART
+        e.target.style.color = "rgb(170,184,194)"
+      }
+    })
+  }
+  
+})
 
 
 
