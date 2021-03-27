@@ -3,10 +3,39 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+const glyphStates = {
+  "♥": "♡",
+  "♡": "♥"
+};
 
+const colorStates = {
+  "red":"",
+  "": "red"
+};
 
+let articleHearts = document.querySelectorAll(".like");
 
+function likeCallback(e) {
+  const heart = e.target;
+  mimicServerCall("hahaThisIsTheBogusUrl")
+  // We'll use Pillar 1 (DOM Manipulation) to update the screen and
+  // mimic Pillar 3 (Server Communication) to only update the screen if the
+  // sending of information to the server succeeds
+  .then(function(serverMessage){
+    heart.innerText = glyphStates[heart.innerText];
+    heart.style.color = colorStates[heart.style.color];
+  })
+  .catch(function(error) {
+    const modal = document.getElementById("modal");
+    modal.className = "";
+    modal.innerText = error;
+    setTimeout(() => module.className = "hidden", 3000);
+  })
+}
 
+for (const glyph of articleHearts) {
+  glyph.addEventListener("click", likeCallback)
+}
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
 //------------------------------------------------------------------------------
