@@ -7,23 +7,22 @@ const FULL_HEART = "♥";
 document.addEventListener("DOMContentLoaded", (event) => {
   const items = document.getElementsByClassName("like");
   for (let i = 0; i < items.length; i++) {
-    items[i].setAttribute("id", i);
-    items[i].onclick = function () {
-      likeFunction(items[i]);
+    const heart = items[i].children[0];
+    heart.onclick = function () {
+      likeFunction(heart);
     };
   }
 });
 
-function likeFunction(liElement) {
+function likeFunction(heart) {
   mimicServerCall()
     .then((response) => {
-      const heart = liElement.children[0];
-      if (heart.className === "activated-heart") {
+      if (heart.classList.contains("activated-heart")) {
         heart.innerHTML = EMPTY_HEART;
         heart.classList.remove("activated-heart");
       } else {
         heart.innerHTML = FULL_HEART;
-        heart.className = "activated-heart";
+        heart.classList.add("activated-heart");
       }
     })
     .catch(() => {
@@ -32,7 +31,7 @@ function likeFunction(liElement) {
       setTimeout(function () {
         addHiddenClassBack(hidden);
       }, 3000);
-    });
+    })
 }
 
 function addHiddenClassBack(element) {
