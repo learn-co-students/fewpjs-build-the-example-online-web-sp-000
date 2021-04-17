@@ -4,6 +4,27 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const heartGlyphs = document.querySelectorAll('.like-glyph')
+
+function like(event) {
+  let heart = event.target;
+  mimicServerCall()
+    .then(function(repsonse){
+      heart.innerText = FULL_HEART;
+      heart.style.color = 'red';
+    })
+    .catch(function(error){
+      let modal = document.getElementById('modal');
+      modal.className = '';
+      modal.innerText = error;
+      setTimeout(() => modal.className = 'hidden', 3000);
+    });
+}
+
+for (const glyph of heartGlyphs) {
+  glyph.addEventListener('click', like);
+}
+
 
 
 
