@@ -4,7 +4,14 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let likeLis = document.getElementsByClassName("like")
+likeLis.addEventListener("click", mimicServerCall)
+.then(function(response)
+.catch((error) => {
+  console.log('Error:', error)
+  document.getElementById("modal").removeAttribute("class")
 
+}
 
 
 //------------------------------------------------------------------------------
