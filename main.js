@@ -4,7 +4,50 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const changeOfHeart = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+function heartColor(heart) {
+
+  if (heart.className == 'activated-heart') {
+    heart.setAttribute('class', 'like-glyph');
+  } else {
+
+    heart.setAttribute('class', 'activated-heart');
+  }
+
+};
+
+const unicodeHearts = document.querySelectorAll(".like-glyph");
+
+
+document.querySelectorAll('.like-glyph').forEach(item => {
+    item.addEventListener('click', likeEvent)
+  })
+
+function likeEvent(e) {
+  console.log('test test test')
+  let heart = e.target
+  // heart.innerText = changeOfHeart[heart.innerText];
+  // .activated-heart
+  // heart.setAttribute('class', 'activated-heart');
+  // heartColor(heart);
+
+  mimicServerCall("www.fake.com")
+  //OR: mimicServerCall("bogusUrl", {forceFailure: true})
+   .then(function(serverMessage){
+    heart.innerText = changeOfHeart[heart.innerText];
+    heartColor(heart);
+   })
+   .catch(function(error) {
+    const modal = document.getElementById("modal");
+    modal.className = "";
+    modal.innerText = error;
+    setTimeout(() =>  modal.className = "hidden", 3000);
+  });
+}
 
 
 //------------------------------------------------------------------------------
