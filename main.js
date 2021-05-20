@@ -22,10 +22,9 @@ likeBtns.forEach((button) => {
       const errorDisplay = document.getElementById("modal")
       const messageDisplay = document.getElementById("modal-message")
       messageDisplay.innerText = e.message
-      console.log(e.message)
-      errorDisplay.hidden = false
+      errorDisplay.removeAttribute("class", "hidden")
       setInterval(() => {
-        errorDisplay.hidden = true
+        errorDisplay.setAttribute("class", "hidden")
       }, 3000)
     })
   })
