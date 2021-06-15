@@ -10,12 +10,10 @@ const likeBtns = document.querySelectorAll('.like-glyph')
   e.preventDefault();
   let heart = e.path[0]
   if (heart.innerText === FULL_HEART) {
-    console.log("make empty")
     heart.innerText = EMPTY_HEART
     heart.classList.remove("activated-heart")
   }
   else {
-    console.log("make full")
     response = mimicServerCall() 
       response.then(
         function(value) { 
