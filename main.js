@@ -22,7 +22,8 @@ function likeCallback(evt){
     }
   })
   .catch(function(error){
-    alert("Error");
+    //alert("Error");
+    document.getElementById("modal").className = "";
   })
 }
 
