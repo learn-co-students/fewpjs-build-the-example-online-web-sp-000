@@ -9,6 +9,8 @@ for(let i=0;i<likeButton.length;i++){
 }
 
 
+
+
 function likeCallback(evt){
   let heart = evt.target;
   mimicServerCall("bogusUrl")
@@ -24,6 +26,7 @@ function likeCallback(evt){
   .catch(function(error){
     //alert("Error");
     document.getElementById("modal").className = "";
+    setTimeout(function(){ document.getElementById("modal").className = "hidden" }, 3000);
   })
 }
 
